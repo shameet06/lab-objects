@@ -13,6 +13,8 @@ class User:
         >>> u.followers
         0
         '''
+        self.username = username
+        self.followers = 0
         # TODO: store username on self, and start followers at 0
 
     def follow(self):
@@ -25,6 +27,8 @@ class User:
         >>> u.followers
         2
         '''
+        self.followers = self.followers + 1
+
         # TODO: add one to self.followers
 
     def unfollow(self):
@@ -42,6 +46,8 @@ class User:
         >>> u.followers
         0
         '''
+        if self.followers > 0:
+            self.followers = self.followers - 1
         # TODO: subtract one from self.followers, but not below 0
 
     def __str__(self):
@@ -53,6 +59,7 @@ class User:
         >>> str(User('bob'))
         '@bob'
         '''
+        return '@' + self.username
         # TODO: return the username with an '@' in front
 
     def __eq__(self, other):
@@ -66,6 +73,9 @@ class User:
         >>> User('alice') == 'alice'
         False
         '''
+        if not isinstance(other, User):
+            return False
+        return self.username == other.username
         # TODO: return True when other is a User with the same username
 
 
@@ -82,6 +92,9 @@ class Tweet:
         >>> t.likes
         0
         '''
+        self.author = author
+        self.text = text
+        self.likes = 0
         # TODO: store author and text on self, and start likes at 0
 
     def like(self):
@@ -94,6 +107,7 @@ class Tweet:
         >>> t.likes
         2
         '''
+        self.likes = self.likes + 1
         # TODO: add one to self.likes
 
     def unlike(self):
@@ -107,6 +121,9 @@ class Tweet:
         >>> t.likes
         0
         '''
+        if self.likes > 0:
+            self.likes = self.likes - 1
+
         # TODO: subtract one from self.likes, but not below 0
 
     def hashtags(self):
@@ -120,6 +137,11 @@ class Tweet:
         >>> Tweet('alice', '#Games #Games #BringSnacks! word#inside #').hashtags()
         ['Games', 'Games', 'BringSnacks!', '']
         '''
+        tags = []
+        for word in self.text.split():
+            if word.startswith('#'):
+                tags.append(word[1:])
+        return tags
         # TODO: split the text into words; keep the ones starting with '#',
         # returning each one without its leading '#'
 
@@ -130,6 +152,7 @@ class Tweet:
         >>> print(Tweet('alice', 'hello world'))
         @alice: hello world
         '''
+        return '@' + self.author + ': ' + self.text
         # TODO: return the author and text formatted as '@author: text'
 
 
