@@ -12,7 +12,7 @@ def build_feed():
     bayern = User("Bayern Munich")
     halo = User("Halo Studios")
 
-    post1 = Tweet(bayern.username, "Congrats to Harry Kane for winning the Ballon D'or")
+    post1 = Tweet(bayern.username, "Congrats to Harry Kane for winning the Ballon D'or #GOAT")
     post2 = Tweet(halo.username, "Halo Studios will be not be developing the next Halo Game")
     post3 = Tweet(halo.username, "Activision will be developing the next Halo game :(")
     bayern.follow()
